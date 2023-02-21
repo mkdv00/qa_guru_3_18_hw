@@ -1,0 +1,4 @@
+regress_in_base_url = 'https://reqres.in'
+demo_web_shop_base_url = 'https://demowebshop.tricentis.com'
+email = 'maxim.cudaew@gmail.com'
+password = 'Qwerty123'
