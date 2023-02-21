@@ -19,6 +19,19 @@ def test_successful_search(browser_login):
         browser.element('h2.product-title > a').should(have.text('$25 Virtual Gift Card'))
 
 
+def test_remove_product_from_shopping_cart(browser_login, demoshop):
+    browser.open('/')
+
+    with allure.step('Add product to the shopping cart'):
+        demoshop.post('/addproducttocart/details/45/1')
+
+    with allure.step('Remove product from the shopping cart'):
+        browser.element('li#topcartlink > a').click()
+        browser.element('td.remove-from-cart > input').click()
+        browser.element('input.update-cart-button').click()
+        browser.element('div.order-summary-content').should(have.text('Your Shopping Cart is empty!'))
+
+
 def test_add_product_to_shopping_cart(browser_login):
     browser.open('/')
 
