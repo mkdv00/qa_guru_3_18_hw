@@ -32,7 +32,7 @@ def test_remove_product_from_shopping_cart(browser_login, demoshop):
         browser.element('div.order-summary-content').should(have.text('Your Shopping Cart is empty!'))
 
 
-def test_add_product_to_shopping_cart(browser_login):
+def test_add_product_to_shopping_cart(browser_login, demoshop):
     browser.open('/')
 
     with allure.step('Add product to the shopping cart'):
@@ -46,6 +46,11 @@ def test_add_product_to_shopping_cart(browser_login):
         browser.driver.refresh()
 
         browser.element('a.product-name').should(be.visible)
+
+    with allure.step('Remove products from the cart'):
+        browser.element('td.remove-from-cart > input').click()
+        browser.element('input.update-cart-button').click()
+        browser.element('div.order-summary-content').should(have.text('Your Shopping Cart is empty!'))
 
 
 def test_open_account(browser_login):
